@@ -35,20 +35,29 @@ export class Board extends React.Component {
 
     var gameBoard = {
       boardSquares: [...this.state.squares],
-      playerNext: this.state.nextPlayer,
-      winner: '',
-      currentStatus: ('Next player: ' + this.state.nextPlayer)
     }
 
     gameBoard.boardSquares[i] = this.state.nextPlayer;
-    gameBoard = this.calculateWinner(gameBoard);
-    console.log('this.calculateWinner called.')
+
+    const prevPlayer = this.state.nextPlayer;
+    const currentPlayer = (prevPlayer.toUpperCase() === 'X') ? 'O' : 'X';
+
+    console.log("prev player: " + prevPlayer);
+    console.log("currentPlayer: " + currentPlayer);
+      
+    gameBoard.playerNext = currentPlayer;
+    gameBoard.statusMsg = ("Next player: " + currentPlayer);
+
+    this.setState({ squares: gameBoard.boardSquares, nextPlayer: gameBoard.playerNext, gameStatus: gameBoard.statusMsg }, () => { 
+      this.calculateWinner();
+      console.log('after', this.state);
+    });
+
     console.log(gameBoard);
 
-    this.setState({ squares: gameBoard.boardSquares, winningPlayer: gameBoard.winner, nextPlayer: gameBoard.playerNext, gameStatus: gameBoard.currentStatus }, () => console.log('after', this.state));
   }
 
-  calculateWinner(gameBoard) {
+  calculateWinner() {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -60,6 +69,13 @@ export class Board extends React.Component {
       [2, 4, 6],
     ];
 
+    var gameBoard = {
+      boardSquares: [...this.state.squares],
+      playerNext: this.state.nextPlayer,
+      winner: '',
+      statusMsg: this.state.gameStatus
+    }
+
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (
@@ -69,26 +85,15 @@ export class Board extends React.Component {
       ) {
         console.log('WINNER:', gameBoard.boardSquares[a]);
         gameBoard.winner = gameBoard.boardSquares[a];
-        gameBoard.currentStatus = ("Winner is: " + gameBoard.boardSquares[a]);
-        return gameBoard;
+        gameBoard.statusMsg = ("Winner is: " + gameBoard.boardSquares[a]);
       }
     }
 
-    if (!gameBoard.boardSquares.includes(null)) {
-      gameBoard.currentStatus = 'Game drawn!!';
-      return gameBoard;
+    if (!gameBoard.boardSquares.includes(null) && !gameBoard.winner) {
+      gameBoard.statusMsg = 'Game drawn!!';
     }
 
-    const prevPlayer = this.state.nextPlayer;
-    const currentPlayer = (prevPlayer.toUpperCase() === 'X') ? 'O' : 'X';
-
-    console.log("prev player: " + prevPlayer);
-    console.log("currentPlayer: " + currentPlayer);
-     
-    gameBoard.playerNext = currentPlayer;
-    gameBoard.currentStatus = ("Next player: " + currentPlayer);
-
-    return gameBoard;
+    this.setState({ winningPlayer: gameBoard.winner, gameStatus: gameBoard.statusMsg }, () => console.log('after', this.state));
   }
 
   renderSquare(i) {
