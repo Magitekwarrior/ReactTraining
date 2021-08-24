@@ -10,18 +10,10 @@ export class Board extends React.Component {
       squares: Array(9).fill(null),
       nextPlayer: 'X',
       winningPlayer:'',
-      gameStatus: 'Next player: X'
+      currentGameStatus: 'Next player: X'
     }
   }
 
-  newGame(){
-    this.setState({ 
-      squares: Array(9).fill(null),
-      nextPlayer: 'X',
-      winningPlayer: '',
-      gameStatus: 'Next player: X'
-    })
-  }  
 
   handleClick(i){
 
@@ -48,7 +40,7 @@ export class Board extends React.Component {
     gameBoard.playerNext = currentPlayer;
     gameBoard.statusMsg = ("Next player: " + currentPlayer);
 
-    this.setState({ squares: gameBoard.boardSquares, nextPlayer: gameBoard.playerNext, gameStatus: gameBoard.statusMsg }, () => { 
+    this.setState({ squares: gameBoard.boardSquares, nextPlayer: gameBoard.playerNext, currentGameStatus: gameBoard.statusMsg }, () => { 
       this.calculateWinner();
       console.log('after', this.state);
     });
@@ -73,7 +65,7 @@ export class Board extends React.Component {
       boardSquares: [...this.state.squares],
       playerNext: this.state.nextPlayer,
       winner: '',
-      statusMsg: this.state.gameStatus
+      statusMsg: this.state.currentGameStatus
     }
 
     for (let i = 0; i < lines.length; i++) {
@@ -93,7 +85,7 @@ export class Board extends React.Component {
       gameBoard.statusMsg = 'Game drawn!!';
     }
 
-    this.setState({ winningPlayer: gameBoard.winner, gameStatus: gameBoard.statusMsg }, () => console.log('after', this.state));
+    this.setState({ winningPlayer: gameBoard.winner, currentGameStatus: gameBoard.statusMsg }, () => console.log('after', this.state));
   }
 
   renderSquare(i) {
@@ -110,7 +102,7 @@ export class Board extends React.Component {
       <div>
         <div><button type="reset" onClick={()=> this.newGame()} >New Game</button></div>
         <br />
-        <div className="status">{this.state.gameStatus}</div>
+        <div className="status">{this.state.currentGameStatus}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
