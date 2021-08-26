@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: . # this context sets where to find AND where dockerfile gets built
+      dockerfile: Dockerfile
+    container_name: 'react-meetups'
+    ports:
+      - '3001:3000'
+    # volumes:
+    #   - ./src:/app/src
+    environment: 
+      - COMPOSE_DOCKER_CLI_BUILD=1
+    stdin_open: true # for using --it interactive mode
+    tty: true # for using --it interactive mode
