@@ -62,13 +62,9 @@ function AllMeetupsPage() {
   return (
     <section>
       <h1>ALL MEETUPS</h1>
-
-      {allMeetupsData && (
         <ul>
-          {" "}
           <MeetupList meetups={allMeetupsData} />
         </ul>
-      )}
     </section>
   );
 }
