@@ -1,34 +1,61 @@
-import React from 'react';
-import Card from '../ui/Card';
+import React from "react";
+import Card from "../ui/Card";
+import { useRef } from "react";
 
-import classes from './NewMeetupForm.module.css'
+import classes from "./NewMeetupForm.module.css";
 
-function NewMeetupForm() {
+function NewMeetupForm(props) {
+  const titleInputRef = useRef();
+  const imageInputRef = useRef();
+  const addressInputRef = useRef();
+  const descriptionInputRef = useRef();
+
+  function formSubmitHandler(event) {
+    event.preventDefault();
+
+    const enteredTitle = titleInputRef.current.value;
+    const enteredImage =  imageInputRef.current.value;
+    const enteredAddress = addressInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
+  
+    const meetupData = {
+      title: enteredTitle,
+      image: enteredImage,
+      address: enteredAddress,
+      description: enteredDescription
+    }
+
+    // console.log('meetup data: ', meetupData);
+    props.onAddMeetup(meetupData);
+
+    alert('Successfully submitted data')
+  }
+
   return (
     <Card>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={formSubmitHandler}>
         <div className={classes.control}>
-          <label htmlFor='title'>Meetup Title</label>
-          <input type="text" id="title" required />
+          <label htmlFor="title">Title</label>
+          <input type="text" id="title" required ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>Meetup Image</label>
-          <input type="url" id="image" required />
+          <label htmlFor="image">Image</label>
+          <input type="url" id="image" required ref={imageInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='address'>Meetup Image</label>
-          <input type="text" id="address" required />
+          <label htmlFor="address">Address</label>
+          <input type="text" id="address" required ref={addressInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='description'>Meetup Image</label>
-          <textarea id="description" required rows='5' ></textarea>
+          <label htmlFor="description">Description</label>
+          <textarea id="description" required rows={5} ref={descriptionInputRef}></textarea>
         </div>
         <div className={classes.actions}>
           <button>Add Meetup</button>
         </div>
       </form>
     </Card>
-  )
+  );
 }
 
 export default NewMeetupForm;
