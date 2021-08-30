@@ -1,0 +1,53 @@
+input:read-only{
+  background-color: white;
+}
+
+/* The list (background) */
+.list {
+  position: relative;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.noselect {
+  pointer-events:none;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* list Content/Box */
+.listcontent {
+  border-radius: 5px;
+  background-color: white#fefefe;
+  /* 15% from the top and centered */
+  /* margin: 15% auto;  */
+  margin: auto;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.listheader {
+  padding: 2px 10px;
+  border-radius: 15px 15px 0px 0px;
+  background-color: white;
+  color: white;  
+}
+
+.listbody {
+  padding: 2px 16px;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.listfooter {
+  padding: 2px 15px 15px 2px;
+  border-radius: 0px 0px 5px 5px;
+  background-color: white;
+  color: white;
+  text-align:right;
+}
