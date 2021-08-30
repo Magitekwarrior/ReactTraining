@@ -7,8 +7,8 @@ export default function UserList(props) {
     <Card>
         {props.userItems.map((userItem) => (
           <UserItem
-            key={userItem.key}
-            id={userItem.key}
+            key={userItem.id}
+            id={userItem.id}
             username={userItem.userName}
             age={userItem.age}
           ></UserItem>

@@ -20,7 +20,7 @@ function App() {
     // console.log("userDataList:", userDataList);
 
     setAllUsersData((prevUsersList) => {
-      return [...prevUsersList, {key:uuidv4(), userName: uName, age: uAge}];
+      return [...prevUsersList, {id:uuidv4(), userName: uName, age: uAge}];
     })
   }
 
