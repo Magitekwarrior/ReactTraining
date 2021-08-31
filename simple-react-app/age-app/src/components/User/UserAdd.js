@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./UserAdd.module.css";
 import Card from "../UI/Card";
 import Modal from "../UI/Modal";
+import Wrapper from "../Helpers/Wrapper";
 
 function UserAdd(props) {
   const [enteredUsername, setUsername] = useState("");
@@ -52,7 +53,7 @@ function UserAdd(props) {
   }
 
   return (
-    <div>
+    <Wrapper>
       {modalInfo && <Modal title={modalInfo.title} message={modalInfo.message} onConfirm={errorHandler} />}
       
       <Card>
@@ -84,7 +85,7 @@ function UserAdd(props) {
           </div>
         </form>
       </Card>
-    </div>
+    </Wrapper>
   );
 }
 
