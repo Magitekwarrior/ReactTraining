@@ -2,7 +2,7 @@ import "./App.css";
 import UserAdd from "./components/User/UserAdd";
 import UserList from "./components/User/UserList";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -31,11 +31,12 @@ function App() {
   }
 
   return (
-    <div>
-      Learn React: APP EXAMPLE
+    // Fragment is FROM React
+    <React.Fragment> 
+      Learn React: APP - ADD USERS
       <UserAdd onAddUser={addUserHandler}></UserAdd>
       <UserList userItems={allUsersData}></UserList>
-    </div>
+    </React.Fragment>
   );
 }
 

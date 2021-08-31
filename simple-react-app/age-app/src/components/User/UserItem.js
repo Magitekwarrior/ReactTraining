@@ -5,6 +5,7 @@ export default function UserItem(props) {
   const userDisplayData = props.username + " (" + props.age + ") years old";
 
   return (
+    <React.Fragment>
       <div className={classes.list}>
         <div className={classes.listcontent}>
           <div className={classes.listheader}></div>
@@ -13,5 +14,6 @@ export default function UserItem(props) {
           </div>
         </div>
       </div>
+    </React.Fragment>
   );
 }
