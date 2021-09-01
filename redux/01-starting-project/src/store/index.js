@@ -1,23 +1,21 @@
-import { createStore } from "redux";
+import { createStore } from 'redux';
 
-const initialState = {
-  counter: 0,
-};
-
-// [State, Action]
-const counterReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case "increment":
-      return { counter: state.counter + 1 };
-
-    case "decrement":
-      return { counter: state.counter - 1 };
-
-    default:
-      return state;
+const counterReducer = (state = { counter: 0 }, action) => {
+  if (action.type === 'increment') {
+    return {
+      counter: state.counter + 1,
+    };
   }
+
+  if (action.type === 'decrement') {
+    return {
+      counter: state.counter - 1,
+    };
+  }
+
+  return state;
 };
 
-const reduxStore = createStore(counterReducer); 
+const store = createStore(counterReducer);
 
-export default reduxStore;
+export default store;
