@@ -4,11 +4,16 @@ import Counter from './components/Counter';
 import Header from './components/Header'
 import Auth from './components/Auth'
 
+import { useSelector, useDispatch } from 'react-redux';
+
 function App() {
+  // Get access to field from state:
+  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+
   return (
     <React.Fragment>
       <Header />
-      <Auth />
+      {!isAuthenticated && <Auth />}
       <Counter />
     </React.Fragment>
   );

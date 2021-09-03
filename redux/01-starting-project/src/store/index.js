@@ -28,6 +28,7 @@ const counterSlice = createSlice({
   reducers:{
     increment(state){
       state.counter++; // redux toolkit automatically makes this immutable (a copy of state)
+      // auto includes showCounter as per default/previous state.
     },
     decrement(state){
       state.counter--;
