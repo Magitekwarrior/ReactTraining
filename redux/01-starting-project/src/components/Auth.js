@@ -5,14 +5,16 @@ import { authActions } from '../store/index';
 const Auth = () => {
   const dispatch = useDispatch(); // init
 
-  const loginHandler = () => {
+  const loginHandler = (event) => {
+    event.preventDefault();
+    
     dispatch(authActions.login());
   }
 
   return (
     <main className={classes.auth}>
       <section>
-        <form>
+        <form onSubmit={loginHandler}>
           <div className={classes.control}>
             <label htmlFor='email'>Email</label>
             <input type='email' id='email' />
